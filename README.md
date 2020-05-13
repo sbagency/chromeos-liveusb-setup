@@ -15,3 +15,10 @@ quit
 
 resize2fs /dev/sda16 
 ```
+### docker setup
+```bash
+sudo start docker
+sudo docker run --rm alpine echo "hello"
+sudo bash -c "echo 0-3>/sys/fs/cgroup/cpuset/docker/cpuset.cpus"
+sudo docker run --rm alpine echo "hello"
+```
