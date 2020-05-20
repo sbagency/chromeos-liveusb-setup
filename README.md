@@ -1,4 +1,4 @@
-# crome os usb setup
+# crome os live usb setup
 
 ```bash
 wget https://dl.bintray.com/chromebrew/chromebrew/parted-3.2-chromeos-x86_64.tar.xz
