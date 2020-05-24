@@ -22,4 +22,9 @@ sleep 2
 sudo docker run --rm alpine echo "hello"
 sudo bash -c "echo 0-3>/sys/fs/cgroup/cpuset/docker/cpuset.cpus"
 sudo docker run --rm alpine echo "hello"
+
+# docker-compose setup https://github.com/docker/compose/releases
+sudo curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+# sudo TMPDIR=/usr/local/opt/tmp docker-compose up
 ```
