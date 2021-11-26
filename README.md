@@ -1,4 +1,21 @@
 # crome os live usb setup
+```bash
+wget --inet4-only https://gitlab.com/api/v4/projects/26210301/packages/generic/ncurses/6.3-20211106_x86_64/ncurses-6.3-20211106-chromeos-x86_64.tpxz
+wget --inet4-only https://gitlab.com/api/v4/projects/26210301/packages/generic/parted/3.4_x86_64/parted-3.4-chromeos-x86_64.tar.xz
+tar xvf ncurses-6.3-20211106-chromeos-x86_64.tpxz 
+tar xvf parted-3.4-chromeos-x86_64.tar.xz 
+export LD_LIBRARY_PATH=/usr/local/opt/usr/local/lib64:$LD_LIBRARY_PATH
+cd usr/local/sbin
+
+sudo ./parted
+print free
+resizepart 1
+quit
+
+resize2fs /dev/sda1
+
+```
+
 
 ```bash
 wget https://dl.bintray.com/chromebrew/chromebrew/parted-3.2-chromeos-x86_64.tar.xz
