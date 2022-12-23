@@ -21,6 +21,9 @@ apt-get install aria2
 youtube-dl --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16' $URL
 https://www.reddit.com/r/youtubedl/comments/qf2uqv/fix_for_60kbs_throttled_downloads_2021oct/
 ```
+```bash
+NODE_OPTIONS=--dns-result-order=ipv4first npm ping
+```
 
 ```bash
 wget https://dl.bintray.com/chromebrew/chromebrew/parted-3.2-chromeos-x86_64.tar.xz
