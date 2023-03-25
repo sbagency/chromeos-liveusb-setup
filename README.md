@@ -24,6 +24,14 @@ https://www.reddit.com/r/youtubedl/comments/qf2uqv/fix_for_60kbs_throttled_downl
 ```bash
 NODE_OPTIONS=--dns-result-order=ipv4first npm ping
 ```
+```bash
+sudo nano /etc/sysctl.conf
+
+net.ipv6.conf.all.disable_ipv6 = 1
+#or for enp0s3 only net.ipv6.conf.enp0s3.disable_ipv6 = 1
+
+sudo sysctl -p
+```
 
 ```bash
 wget https://dl.bintray.com/chromebrew/chromebrew/parted-3.2-chromeos-x86_64.tar.xz
