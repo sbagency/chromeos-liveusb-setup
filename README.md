@@ -34,6 +34,11 @@ sudo sysctl -p
 ```
 
 ```bash
+cd /mnt
+find . -name *.cfg -exec sudo sed -i 's,\(cros_legacy\|cros_efi\),\1 cros_debug,g' {} \;
+```
+
+```bash
 wget https://dl.bintray.com/chromebrew/chromebrew/parted-3.2-chromeos-x86_64.tar.xz
 wget https://dl.bintray.com/chromebrew/chromebrew/ncurses-6.2-chromeos-x86_64.tar.xz
 tar xvf ncurses-6.2-chromeos-x86_64.tar.xz
