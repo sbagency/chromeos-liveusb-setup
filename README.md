@@ -31,6 +31,9 @@ net.ipv6.conf.all.disable_ipv6 = 1
 #or for enp0s3 only net.ipv6.conf.enp0s3.disable_ipv6 = 1
 
 sudo sysctl -p
+
+gsettings set org.gnome.desktop.interface scaling-factor 1.5
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.75
 ```
 
 ```bash
