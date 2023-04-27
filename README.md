@@ -42,6 +42,14 @@ find . -name *.cfg -exec sudo sed -i 's,\(cros_legacy\|cros_efi\),\1 cros_debug,
 ```
 
 ```bash
+pandoc input.txt -o output.pdf
+apt-get install libreoffice
+soffice --convert-to pdf /file.txt
+apt-get install cups
+cupsfilter /file.txt > /file.pdf
+```
+
+```bash
 wget https://dl.bintray.com/chromebrew/chromebrew/parted-3.2-chromeos-x86_64.tar.xz
 wget https://dl.bintray.com/chromebrew/chromebrew/ncurses-6.2-chromeos-x86_64.tar.xz
 tar xvf ncurses-6.2-chromeos-x86_64.tar.xz
