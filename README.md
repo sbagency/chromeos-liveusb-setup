@@ -40,6 +40,52 @@ gsettings set org.gnome.desktop.interface text-scaling-factor 1.75
 cd /mnt
 find . -name *.cfg -exec sudo sed -i 's,\(cros_legacy\|cros_efi\),\1 cros_debug,g' {} \;
 ```
+```js
+function saveDataToFile(data, filename) {
+  const blob = new Blob([data], { type: 'text/plain' });
+  const anchorElement = document.createElement('a');
+  anchorElement.href = URL.createObjectURL(blob);
+  anchorElement.download = filename;
+  anchorElement.click();
+}
+
+function loadDataFromFile(file) {
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    const data = event.target.result;
+    console.log('Loaded data:', data);
+	 const ls=JSON.parse(data);
+	 localStorage.clear();
+	 for(var i in ls){
+	 localStorage.setItem(i,ls[i]);
+	 }
+  };
+
+  reader.readAsText(file);
+}
+
+//saveDataToFile(JSON.stringify(localStorage),"ls.json");
+
+const fileInput = document.createElement('input');
+fileInput.type = 'file';
+fileInput.onchange = function (event) {
+  const file = event.target.files[0];
+  loadDataFromFile(file);
+};
+//fileInput.click();
+
+async function saveCachesToFile(filename){
+ const cacheNames = await window.caches.keys()
+ for(var CN of cacheNames){
+   console.log(CN);
+   const cache = await window.caches.open(CN);
+	const cacheKeys = await cache.keys();
+	console.log(cacheKeys);
+ }
+}
+
+
+```
 
 ```bash
 pandoc input.txt -o output.pdf
