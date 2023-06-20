@@ -41,6 +41,25 @@ cd /mnt
 find . -name *.cfg -exec sudo sed -i 's,\(cros_legacy\|cros_efi\),\1 cros_debug,g' {} \;
 ```
 ```js
+var CacheStorageSaved={}
+function collectCaches(){
+	window.caches.keys().then(function(cacheNames) {
+	 for(var cacheName of cacheNames){
+	 console.log(cacheName);	 
+      window.caches.open(cacheName).then(function(cache) {
+        return cache.keys();
+      }).then(function(requests) {
+		  if(!CacheStorageSaved[cacheName])CacheStorageSaved[cacheName]=[]
+		  for(var request of requests){
+		  	//console.log(request)
+			CacheStorageSaved[cacheName].push(request.url)
+		  }
+      });
+    }	 
+  });
+}
+
+
 function saveDataToFile(data, filename) {
   const blob = new Blob([data], { type: 'text/plain' });
   const anchorElement = document.createElement('a');
@@ -49,7 +68,14 @@ function saveDataToFile(data, filename) {
   anchorElement.click();
 }
 
-function loadDataFromFile(file) {
+
+//saveDataToFile(JSON.stringify(localStorage),"ls.json");
+//saveDataToFile(JSON.stringify(CacheStorageSaved),"cache.json");
+
+const fileInput = document.createElement('input');
+fileInput.type = 'file';
+fileInput.onchange = function (event) {
+  const file = event.target.files[0];
   const reader = new FileReader();
   reader.onload = function (event) {
     const data = event.target.result;
@@ -62,27 +88,29 @@ function loadDataFromFile(file) {
   };
 
   reader.readAsText(file);
-}
-
-//saveDataToFile(JSON.stringify(localStorage),"ls.json");
-
-const fileInput = document.createElement('input');
-fileInput.type = 'file';
-fileInput.onchange = function (event) {
-  const file = event.target.files[0];
-  loadDataFromFile(file);
 };
 //fileInput.click();
 
-async function saveCachesToFile(filename){
- const cacheNames = await window.caches.keys()
- for(var CN of cacheNames){
-   console.log(CN);
-   const cache = await window.caches.open(CN);
-	const cacheKeys = await cache.keys();
-	console.log(cacheKeys);
- }
-}
+const fileInput2 = document.createElement('input');
+fileInput2.type = 'file';
+fileInput2.onchange = function (event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+  reader.onload = function (event) {
+    const data = event.target.result;
+    //console.log('Loaded data:', data);
+	 const savedcache=JSON.parse(data);
+	 
+	 for(let cacheName in savedcache){
+      window.caches.open(cacheName).then(function(cache) {
+		  cache.addAll(savedcache[cacheName])
+		})
+	 }
+  };
+  reader.readAsText(file);
+};
+//fileInput2.click();
+
 
 
 ```
