@@ -191,3 +191,40 @@ umount ./home
 umount ./etc
 umount ./tmp
 ```
+#crouton
+```bash
+#run crouton till fail
+#cp /usr/local/bin/enter-chroot ~/Downloads/
+#comment all rdm
+#cp ~/Downloads/enter-chroot /usr/local/bin/enter-chroot
+# run enter-chroot
+#
+# Allow X server running as normal user to set/drop DRM master
+#drm_relax_file="/sys/kernel/debug/dri/drm_master_relax"
+#if [ -f "$drm_relax_file" ]; then
+#    echo 'Y' > "$drm_relax_file"
+#fi
+
+# Modify chroot's /sys/class/drm and /dev/dri to avoid vgem/mfgsys
+#varrundrm="$(fixabslinks '/var/run/drm')"
+#varrundri="$(fixabslinks '/var/run/dri')"
+#sysclassdrm="$(fixabslinks '/sys/class/drm')"
+#devdri="$(fixabslinks '/dev/dri')"
+#if [ ! -d "$varrundrm" -a -d "$sysclassdrm" -a -d "$devdri" ]; then
+#    cp -Ta "$sysclassdrm" "$varrundrm"
+#    cp -Ta "$devdri" "$varrundri"
+#    for f in "$varrundrm"/*; do
+#        if [ -h "$f" ] && readlink -- "$f" | grep -qF -e /vgem/ -e mfgsys; then
+#            rm -f "$f" "$varrundri/${f##*/}"
+#        fi
+#    done
+#    # Scanning of /dev/dri is done sequentially, so make sure there's a card0
+#    for f in "$varrundri/card"*; do
+#        [ -e "$varrundri/card0" ] || mv -f "$f" "$varrundri/card0"
+#    done
+#    mount --bind "$varrundrm" "$sysclassdrm"
+#    mount --bind "$varrundri" "$devdri"
+#fi
+
+
+```
