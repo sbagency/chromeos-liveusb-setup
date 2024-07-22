@@ -228,3 +228,36 @@ umount ./tmp
 
 
 ```
+# flet
+```bash
+# https://github.com/flet-dev/flet/issues/2823
+In Debian 12 - Debian GNU/Linux 12 (bookworm)
+Being root:
+apt install libmpv-dev mpv 
+dpkg -L libmpv-dev
+the output is:
+
+/usr
+/usr/include
+/usr/include/mpv
+/usr/include/mpv/client.h
+/usr/include/mpv/render.h
+/usr/include/mpv/render_gl.h
+/usr/include/mpv/stream_cb.h
+/usr/lib
+/usr/lib/x86_64-linux-gnu
+/usr/lib/x86_64-linux-gnu/pkgconfig
+/usr/lib/x86_64-linux-gnu/pkgconfig/mpv.pc
+/usr/share
+/usr/share/doc
+/usr/share/doc/libmpv-dev
+/usr/share/doc/libmpv-dev/changelog.Debian.gz
+/usr/share/doc/libmpv-dev/changelog.gz
+/usr/share/doc/libmpv-dev/copyright
+/usr/lib/x86_64-linux-gnu/libmpv.so
+
+Then I've applied the symbol:
+ln -s /usr/lib/x86_64-linux-gnu/libmpv.so  /usr/lib/libmpv.so.1 
+
+and it worked for me.
+```
