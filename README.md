@@ -261,3 +261,8 @@ ln -s /usr/lib/x86_64-linux-gnu/libmpv.so  /usr/lib/libmpv.so.1
 
 and it worked for me.
 ```
+
+```bash
+# https://qmacro.org/blog/posts/2024/08/24/new-source-for-lxd-images-on-crostini/
+lxc remote set-url images https://images.lxd.canonical.com/
+```
