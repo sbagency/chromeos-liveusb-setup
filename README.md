@@ -263,6 +263,7 @@ and it worked for me.
 ```
 
 ```bash
+# https://github.com/ptorre/crostini-lxc-cloud-containers
 # https://qmacro.org/blog/posts/2024/08/24/new-source-for-lxd-images-on-crostini/
 lxc remote set-url images https://images.lxd.canonical.com/
 ```
